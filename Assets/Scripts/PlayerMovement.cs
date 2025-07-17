@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] Rigidbody2D rb;
+    [SerializeField] private Transform otherObject;
     [SerializeField] float moveingSpeed;
     [SerializeField] float jumpingPower;
     private Vector2 vector2;
@@ -68,7 +69,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void movePlayer()
     {
-        //rb.linearVelocity = new Vector2(vector2.x * moveingSpeed, vector2.y);
+    
         rb.linearVelocity = new Vector2(vector2.x * moveingSpeed, rb.linearVelocity.y);
+        if (transform.position.x > otherObject.transform.position.x && vector2.x > 0)
+        {
+            otherObject.position += new Vector3(vector2.x * moveingSpeed * Time.deltaTime, 0f, 0f);
+        }
     }
 }
