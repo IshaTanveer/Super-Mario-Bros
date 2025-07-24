@@ -2,8 +2,11 @@ using UnityEngine;
 
 public class Pitfalls : MonoBehaviour
 {
+    AudioManager audioManager;
     [SerializeField] GameObject GameOverPanel;
-    private void Start() {
+    private void Start()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         GameOverPanel.SetActive(false);
     }
     private void OnTriggerEnter2D(Collider2D other)
@@ -11,7 +14,9 @@ public class Pitfalls : MonoBehaviour
         if (other.gameObject.tag == "Pit")
         {
             GameOverPanel.SetActive(true);
-            Debug.Log("You are Dead!");
+            Time.timeScale = 0f;
+            Debug.Log("You are Dead!!!!!!!!!!!!!!!!!!!!!!!!");
+            audioManager.playSFX(audioManager.gameOver);
         }
     }
 

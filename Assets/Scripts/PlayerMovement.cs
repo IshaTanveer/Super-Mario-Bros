@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
     [SerializeField] LayerMask groundLayer;
     [SerializeField] Transform groundCheck;
+    AudioManager audioManager;
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -23,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         moveRef.action.Enable();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
     void Update()
     {
@@ -31,9 +33,7 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         movePlayer();
-        //jump(vector2);
         moveAnimation();
-        //movePlayer(vector2);
     }
     private void OnEnable()
     {
@@ -55,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
+            audioManager.playSFX(audioManager.jump);
         }
     }
 

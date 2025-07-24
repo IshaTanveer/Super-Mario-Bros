@@ -1,16 +1,9 @@
-using System.Collections.Generic;
-using NUnit.Framework;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class Collectibles : MonoBehaviour
+public class Blocks : MonoBehaviour
 {
-    [SerializeField] TMP_Text Coin;
-    [SerializeField] TMP_Text Score;
     [SerializeField] TileBase tileToPlace; // tile to replace
-    private float coins = 0;
-    private float score = 0;
     AudioManager audioManager;
     PlayerDetection playerDetection;
     private Tilemap coinTilemap;
@@ -24,26 +17,14 @@ public class Collectibles : MonoBehaviour
         playerDetection = FindFirstObjectByType<PlayerDetection>();
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
-    public float getCoins()
-    {
-        return coins;
-    }
-    public float getScores()
-    {
-        return score;
-    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "PlayerHead")
         {
             if (playerDetection.detectPlayer(other, tileToPlace, coinTilemap))
             {
-                audioManager.playSFX(audioManager.coin);
-                Debug.Log("Coin collected!");
-                coins = coins + 1;
-                score = score + 200;
-                Coin.text = "Coins \n" + coins.ToString();
-                Score.text = "Scores \n" + score.ToString();
+                audioManager.playSFX(audioManager.thud);
+                Debug.Log("Tile detected");
             }
         }
     }
