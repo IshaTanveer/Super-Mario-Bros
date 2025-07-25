@@ -9,6 +9,10 @@ TagManager:
   - PlayerHead
   - Pit
   - Audio
+  - Goomba
+  - Blocks
+  - Ground Check
+  - GroundCheck
   layers:
   - Default
   - TransparentFX
@@ -58,8 +62,14 @@ TagManager:
   - name: Flag
     uniqueID: 2620679963
     locked: 0
+  - name: Goombas
+    uniqueID: 679201271
+    locked: 0
   - name: Player
     uniqueID: 3890723577
+    locked: 0
+  - name: New Layer 7
+    uniqueID: 1399562783
     locked: 0
   m_RenderingLayers:
   - Default
