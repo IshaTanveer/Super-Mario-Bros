@@ -3,7 +3,7 @@ using UnityEngine.Tilemaps;
 
 public class Blocks : MonoBehaviour
 {
-    [SerializeField] TileBase tileToPlace; // tile to replace
+    //[SerializeField] TileBase tileToPlace; // tile to replace
     AudioManager audioManager;
     PlayerDetection playerDetection;
     private Tilemap coinTilemap;
@@ -21,7 +21,7 @@ public class Blocks : MonoBehaviour
     {
         if (other.gameObject.tag == "PlayerHead")
         {
-            if (playerDetection.detectPlayer(other, tileToPlace, coinTilemap))
+            if (playerDetection.detectPlayerFromBlocks(other, coinTilemap))
             {
                 audioManager.playSFX(audioManager.thud);
                 Debug.Log("Tile detected");

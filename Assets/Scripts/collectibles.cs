@@ -8,7 +8,8 @@ public class Collectibles : MonoBehaviour
 {
     [SerializeField] TMP_Text Coin;
     [SerializeField] TMP_Text Score;
-    [SerializeField] TileBase tileToPlace; // tile to replace
+    [SerializeField] GameObject tileToPlace;
+    [SerializeField] GameObject coinToPlace;  // tile to replace
     private float coins = 0;
     private float score = 0;
     AudioManager audioManager;
@@ -36,7 +37,7 @@ public class Collectibles : MonoBehaviour
     {
         if (other.gameObject.tag == "PlayerHead")
         {
-            if (playerDetection.detectPlayer(other, tileToPlace, coinTilemap))
+            if (playerDetection.detectPlayerFromCollectible(other, tileToPlace, coinToPlace, coinTilemap))
             {
                 audioManager.playSFX(audioManager.coin);
                 Debug.Log("Coin collected!");
